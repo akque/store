@@ -18,7 +18,7 @@ function renderProduct (obj) {
     card.innerHTML = `
         <h2>${obj.title}</h2>
         <p>${obj.description}</p>
-        <p>${obj.price}</p>
+        <p>${obj.price}$</p>
         <p>${obj.category}</p>
         <img src="${obj.image}"></img>
         <btn class="buy_btn">Buy</btn>
@@ -45,7 +45,7 @@ function createCartProduct (obj) {
     Product.classList.add("added_product")
     Product.innerHTML = `
     <h3 class="CartTitle">${obj.title}</h3>
-    <p class="cartPrice">${obj.price}</p>
+    <p class="cartPrice">${obj.price}$</p>
     <div class="cartCountCont">
         <button class="leftCartBtn">🡄</button>
         <span class="cartCount">${obj.count}</span>
