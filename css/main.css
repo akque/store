@@ -50,7 +50,7 @@
     cursor: pointer;
     position: fixed;
     background-color: white;
-    z-index: 999;
+    z-index: 800;
     right: 0;
 }
 .cart {
@@ -60,9 +60,9 @@
     position: fixed;
     left: 15px;right: 15px;bottom: 15px;top: 15px;
     transition: 0.5s;
-    visibility: collapse;
     opacity: 0;
     /* display: none; */
+    visibility: collapse;
 }
 .cartOpened {
     /* display: block; */
@@ -136,4 +136,69 @@
     font-size: 20px;
     border: solid 2px gainsboro;
     background-color: white;
+}
+.paying_modal{
+    width: 450px;
+    background-color: rgb(255, 255, 255);
+    z-index: 900;
+    padding: 75px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    border: solid 4px orange;
+}
+.paying_modal_paypal_btn{
+    background-image: url(../img/paypal.png);
+    width: 200px;
+    height: 80px;
+    background-color: orange;
+    background-size:90%;
+    background-repeat: no-repeat;
+    background-position: center;
+    border-radius: 15px;
+    border: solid 5px rgb(255, 190, 70);
+    cursor: pointer;
+    border: none;
+    display: block;
+}
+.paying_modal_paypal{
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    display: block;
+    border: none;
+    background-color: white;
+}
+.paying_modal_paypal_text{
+    font-size: 20px;
+}
+.paying_modal_input{
+    width: 300px;
+    margin-left: auto;
+    border: solid 3px rgb(209, 209, 209);
+    padding: 8px;
+    border-radius: 5px;
+}
+.overlay{
+    background-color: rgba(0, 0, 0, 0.884);
+    position: fixed;
+    left: 0;right: 0;top: 0;bottom: 0;
+    z-index: 801;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: visible;
+    opacity: 1;
+    transition: 0.5s    ;
+}
+.hiden{
+    visibility: collapse;
+    opacity: 0;
+
+}
+
+button:disabled{
+    opacity: 0.5;
 }

@@ -5,8 +5,11 @@ const cart = document.querySelector(".cart")
 const cartProductList = document.querySelector(".cartProductList")
 const cartProductsArr = []
 const cartTotal = document.querySelector(".cartTotalSubtitle")
-
-cartBtn.addEventListener("click", openCart)
+const overlayModal = document.querySelector(".overlay")
+const cartTotalBtn = document.querySelector(".cartTotalBtn")
+const payingModal = document.querySelector(".paying_modal")
+const payingModalInput = payingModal.querySelectorAll(".paying_modal_input")
+const payingModalBtn = payingModal.querySelector(".paying_modal_paypal_btn")
 
 getProducts()
     .then(data => data.forEach(renderProduct))
@@ -60,7 +63,7 @@ function createCartProduct (obj) {
     leftCARTbtn.addEventListener("click", () => {
         obj.count --
         refrestCartProduct(obj)
-        if (obj.count < 1) {
+        if (obj.count < 1) {    
             deleteProduct(obj, Product)
         }
         else {
@@ -88,3 +91,57 @@ function refrestCartProduct (element) {
 function openCart () {
     cart.classList.toggle("cartOpened")
 }
+
+function openPayModal () {
+    overlayModal.classList.remove("hiden")
+    cart.classList.remove("cartOpened")
+}
+    
+function closePayModal (element) {
+    element.classList.add("hiden")
+}
+
+function sendPaymentData (e) {
+    e.preventDefault()
+    const obj = {}
+    for(let i = 0; i < payingModalInput.length; i++) {
+        obj[payingModalInput[i].name] = payingModalInput[i].value
+    }
+    console.log(obj)
+    closePayModal(overlayModal)
+    payingModal.reset()
+}
+
+function initValidation (inputSelector, submitSelector) {
+    const inputs = document.querySelectorAll(inputSelector)
+    const submit = document.querySelector(submitSelector)
+    inputs.forEach((input) => input.addEventListener("input", () => validation(input, submit, inputs)))
+}
+
+function validation (input, submit, inputs) {
+    const errorMessage = input.nextElementSibling
+    if (input.validity.valueMissing) {
+        errorMessage.textContent = "input is empty"
+    }
+    else if (input.validity.patternMismatch) {
+        errorMessage.textContent = errorMessage.getAttribute("data-error-pattern")
+    }
+    else if (input.validity.tooLong || input.validity.tooShort){
+        errorMessage.textContent = errorMessage.getAttribute("data-error-length")
+    }
+    else {
+        errorMessage.textContent = ""
+    }
+    submit.disabled = ![...inputs].every((inp) => inp.validity.valid===true)
+}
+
+initValidation('.paying_modal_input', '.paying_modal_paypal')
+
+payingModal.addEventListener("submit", sendPaymentData)
+cartBtn.addEventListener("click", openCart)
+cartTotalBtn.addEventListener("click", openPayModal)
+overlayModal.addEventListener("click", (e) => {
+    if(e.target.classList.contains('overlay')){
+        closePayModal(e.target)
+    }
+})

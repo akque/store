@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="./css/main.css">
 </head>
 <body>
+    <div class="overlay">
+        <form class="paying_modal">
+            <input type="text" name="Name" placeholder="Full Name" class="paying_modal_input" required pattern="^[A-Za-z+]+\s+[A-Za-z+]+$">
+            <p class="error_message" data-error-pattern="name must include latin letters and include first name and last name"></p>
+            <input type="text" name="Adress" placeholder="Billing adress" class="paying_modal_input" required minlength="10">
+            <p class="error_message" data-error-length="too short adress, minimal size is 10 symbols"></p>
+            <input type="email" name="Email" placeholder="E-mail" class="paying_modal_input" required pattern="^\S+@\S+\.\S+$">
+            <p class="error_message" data-error-pattern="enter a correct email adress"></p>
+            <input type="text" name="Phone" placeholder="Phone number" minlength="11" maxlength="11" class="paying_modal_input" required pattern="^[0-9+]+$">
+            <p class="error_message" data-error-length="phone number must be 11 numbers length" data-error-pattern="phone number must include only numbers"></p>
+            <button class="paying_modal_paypal">
+                <p class="paying_modal_paypal_text">Pay with</p>
+                <div class="paying_modal_paypal_btn"></div>
+            </button>
+        </form>
+    </div>
     <div class="cartBtn">Cart</div>
     <div class="cart">
         <div class="cartProductList"></div>
