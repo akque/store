@@ -5,8 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Internet Store</title>
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/nullstyle.css">
 </head>
 <body>
+    <header class="header">
+        <p class="header_text">Online Market</p>
+        <div class="header_buttons">
+            <div class="loginBtn">Log in</div>
+            <div class="cartBtn">Cart</div>
+        </div>
+    </header>
     <div class="overlay hiden">
         <form class="paying_modal">
             <input type="text" name="Name" placeholder="Full Name" class="paying_modal_input" required pattern="^[A-Za-z+]+\s+[A-Za-z+]+$">
@@ -23,7 +31,6 @@
             </button>
         </form>
     </div>
-    <div class="cartBtn">Cart</div>
     <div class="cart">
         <div class="cartProductList"></div>
         <div class="cartTotal">

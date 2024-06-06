@@ -15,16 +15,26 @@ getProducts()
     .then(data => data.forEach(renderProduct))
     .catch(error => console.log(error))
 
+
+/* <div class="card_1str">
+<h2 class="card_title">${obj.title}</h2>
+<p class="card_subtitle">${obj.category}</p>
+</div> */
+
 function renderProduct (obj) {
     const card = document.createElement("div")
     card.classList.add("card")
     card.innerHTML = `
-        <h2>${obj.title}</h2>
-        <p>${obj.description}</p>
-        <p>${obj.price}$</p>
-        <p>${obj.category}</p>
         <img src="${obj.image}"></img>
-        <btn class="buy_btn">Buy</btn>
+        <div class="card_text_cont">
+            <h2 class="card_title">${obj.title}</h2>
+            <p class="card_subtitle">${obj.category}</p>
+            <p class="card_price">${obj.price}$</p>
+            <div class="card_buystr">
+                <button class="buy_btn">Buy</button>
+                <button class="more_btn">More</button>
+            </div>
+        </div>
     `
     cont.append(card)
     const buyBtn = card.querySelector(".buy_btn")
