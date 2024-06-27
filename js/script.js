@@ -1,25 +1,37 @@
-import { getProducts } from "./api.js";
+import { getProducts, loginFunc, authApi } from "./api.js";
 const cont = document.querySelector(".container")
 const cartBtn = document.querySelector(".cartBtn")
 const cart = document.querySelector(".cart")
 const cartProductList = document.querySelector(".cartProductList")
 const cartProductsArr = []
 const cartTotal = document.querySelector(".cartTotalSubtitle")
-const overlayModal = document.querySelector(".overlay")
+const overlayModal = document.querySelector(".paying")
 const cartTotalBtn = document.querySelector(".cartTotalBtn")
 const payingModal = document.querySelector(".paying_modal")
 const payingModalInput = payingModal.querySelectorAll(".paying_modal_input")
-const payingModalBtn = payingModal.querySelector(".paying_modal_paypal_btn")
+const cartCloseBtn = document.querySelector(".cartClose")
+const authForm = document.querySelector(".authModal")
+const authFormOpenBtn = document.querySelector(".loginBtn")
+const overlayAuthModal = document.querySelector(".sign_in")
+const authModalCloseBtn = document.querySelector(".authModalCloseBtn")
+const profileBtn = document.querySelector(".profileBtn")
+let user
 
 getProducts()
     .then(data => data.forEach(renderProduct))
     .catch(error => console.log(error))
 
-
-/* <div class="card_1str">
-<h2 class="card_title">${obj.title}</h2>
-<p class="card_subtitle">${obj.category}</p>
-</div> */
+async function auth() {
+    const res = await authApi()
+    if (res.ok) {
+        authFormOpenBtn.classList.add("none")
+        profileBtn.classList.remove("none")
+        const data = await res.json()
+        user = data
+        console.log(user)
+    }
+   
+}
 
 function renderProduct (obj) {
     const card = document.createElement("div")
@@ -99,16 +111,16 @@ function refrestCartProduct (element) {
 }
 
 function openCart () {
-    cart.classList.toggle("cartOpened")
+    cart.classList.add("cartOpened")
 }
 
 function openPayModal () {
-    overlayModal.classList.remove("hiden")
+    overlayModal.classList.remove("hidden")
     cart.classList.remove("cartOpened")
 }
     
 function closePayModal (element) {
-    element.classList.add("hiden")
+    element.classList.add("hidden")
 }
 
 function sendPaymentData (e) {
@@ -155,3 +167,28 @@ overlayModal.addEventListener("click", (e) => {
         closePayModal(e.target)
     }
 })
+cartCloseBtn.addEventListener("click", () => cart.classList.toggle("cartOpened"))
+authForm.addEventListener("submit", async (event) => {
+    event.preventDefault()
+    const {username, password} = authForm.elements
+    const obj = {
+        username:username.value,
+        password:password.value
+    }
+    const response = await loginFunc(obj)
+    console.log(response)
+    localStorage.setItem("token", response.token)
+    overlayAuthModal.classList.add("hidden")
+    authForm.classList.remove("authModalOpened")
+    auth()
+})
+authFormOpenBtn.addEventListener("click", () => {
+    authForm.classList.add("authModalOpened")
+    overlayAuthModal.classList.remove("hidden")
+})
+authModalCloseBtn.addEventListener("click", () => {
+    overlayAuthModal.classList.add("hidden")
+    authForm.classList.remove("authModalOpened")
+})
+
+auth()

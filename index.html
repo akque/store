@@ -12,10 +12,43 @@
         <p class="header_text">Online Market</p>
         <div class="header_buttons">
             <div class="loginBtn">Log in</div>
+            <div class="profileBtn none">Profile</div>
             <div class="cartBtn">Cart</div>
         </div>
     </header>
-    <div class="overlay hiden">
+    <div class="profile overlay hidden">
+        <div class="profileModal">
+            <button class="profile-close-btn">x</button>
+            <p class="profile-title">Profile</p>
+            <div class="profile-data-cont">
+                <div class="profile-avatar"></div>
+                <div class="profile-text-cont">
+                    <p class="profile-text">First Name</p>
+                    <p class="profile-text"></p>
+                    <p class="profile-text">Last name</p>
+                    <p class="profile-text"></p>
+                    <p class="profile-text">Email</p>
+                    <p class="profile-text"></p>
+                    <p class="profile-text">Phone number</p>
+                    <p class="profile-text"></p>
+                </div>
+            </div>
+            <button class="profile-logout-btn">Log out</button>
+        </div>
+    </div>
+    <div class="sign_in overlay hidden">
+        <form class="authModal">
+            <button class="authModalCloseBtn" type="button">x</button>
+            <label for="username" class="authModalLabel">Login</label>
+            <input type="text" name="username" placeholder="Enter login" class="authModalInput">
+            <p class="error_message"></p>
+            <label for="password" class="authModalLabel">Password</label>
+            <input type="text" name="password" placeholder="Enter password" class="authModalInput">
+            <p class="error_message"></p>
+            <button class="authModalLogin">Log in</button>
+        </form>
+    </div>
+    <div class="paying overlay hidden">
         <form class="paying_modal">
             <input type="text" name="Name" placeholder="Full Name" class="paying_modal_input" required pattern="^[A-Za-z+]+\s+[A-Za-z+]+$">
             <p class="error_message" data-error-pattern="name must include latin letters and include first name and last name"></p>
@@ -32,6 +65,7 @@
         </form>
     </div>
     <div class="cart">
+        <button class="cartClose">x</button>
         <div class="cartProductList"></div>
         <div class="cartTotal">
             <button class="cartTotalBtn">Place an order</button>
