@@ -16,6 +16,13 @@ const overlayAuthModal = document.querySelector(".sign_in")
 const authModalCloseBtn = document.querySelector(".authModalCloseBtn")
 const profileBtn = document.querySelector(".profileBtn")
 let user
+const profileName = document.querySelector(".profile-name")
+const profileLastName = document.querySelector(".profile-2name")
+const profileEmail = document.querySelector(".profile-mail")
+const profilePhone = document.querySelector(".profile-phone")
+const profileModal = document.querySelector(".profileModal")
+const profileOverlay = document.querySelector(".profile")
+const profileCloseBtn = document.querySelector(".profile-close-btn")
 
 getProducts()
     .then(data => data.forEach(renderProduct))
@@ -29,8 +36,20 @@ async function auth() {
         const data = await res.json()
         user = data
         console.log(user)
-    }
-   
+        profileName.textContent = user.firstName
+        profileLastName.textContent = user.lastName
+        profileEmail.textContent = user.email
+        profilePhone.textContent = user.phone
+    }   
+}
+
+function profileOpen () {
+    profileOverlay.classList.remove("hidden")
+    profileModal.classList.add("profileOpened")
+}
+function profileClose () {
+    profileOverlay.classList.add("hidden")
+    profileModal.classList.remove("profileOpened")
 }
 
 function renderProduct (obj) {
@@ -190,5 +209,7 @@ authModalCloseBtn.addEventListener("click", () => {
     overlayAuthModal.classList.add("hidden")
     authForm.classList.remove("authModalOpened")
 })
+profileBtn.addEventListener("click", profileOpen)
+profileCloseBtn.addEventListener("click", profileClose)
 
 auth()

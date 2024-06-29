@@ -374,13 +374,15 @@ button, a {
 }
 .profileModal {
     background-color: white;
-    width: 400px;
-    height: 600px;
+    width: 500px;
+    height: 450px;
     border-radius: 7.5px;
     padding: 25px 45px;
     position: relative;
     display: flex;
     flex-direction: column;
+    opacity: 0;
+    visibility: collapse;
 }
 .profile-title{
     font-family: "Inter";
@@ -434,4 +436,14 @@ button, a {
     position: absolute;
     right: 18px;
     top: 3px;
+    cursor: pointer;
+}
+.profile-text-data-cont {
+    display: flex;
+    gap: 10 px;
+    flex-direction: column;
+}
+.profileOpened {
+    opacity: 1;
+    visibility: visible;
 }
