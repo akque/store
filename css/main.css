@@ -369,15 +369,12 @@ button, a {
     right: 14px;
     top: 2px;
 }
-.none {
-    display: none;
-}
 .profileModal {
     background-color: white;
-    width: 500px;
-    height: 450px;
+    width: 600px;
+    height: 500px;
     border-radius: 7.5px;
-    padding: 25px 45px;
+    padding: 25px 35px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -409,16 +406,19 @@ button, a {
     gap: 30px;
     display: flex;
     flex-direction: column;
+    min-width: 300px;
 }
 .profile-text {
     font-family: "Inter";
     font-weight: 500;
     font-size: 15px;
+    border: none;
+    background: none;
 }
 .profile-logout-btn {
     border: solid 2px black;
     background-color: white;
-    padding: 20px 60px;
+    padding: 20px;
     align-items: center;
     justify-content: space-around;
     border-radius: 5px;
@@ -426,6 +426,7 @@ button, a {
     font-weight: 500;
     font-size: 14px;
     cursor: pointer;
+    width: 250px;
 }
 .profile-close-btn {
     font-family: "Inter";
@@ -438,12 +439,61 @@ button, a {
     top: 3px;
     cursor: pointer;
 }
+.profile-edit-btn {
+    border: solid 2px black;
+    background-color: white;
+    padding: 20px;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 5px;
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    width: 150px;
+    text-align: center;
+}
+.profile-save-btn {
+    border: solid 2px black;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 14px;
+    cursor: pointer;
+    width: 400px;
+    margin: auto;
+}
+.profile-btns {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    width: 100%;
+    justify-content: space-evenly;
+}
 .profile-text-data-cont {
     display: flex;
-    gap: 10 px;
+    gap: 10px;
     flex-direction: column;
+}
+.profile-username {
+    font-family: "Inter";
+    font-weight: 500;
+    font-size: 20px;
+    border: none;
+    background: none;
+}
+.profile-left-cont {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
 }
 .profileOpened {
     opacity: 1;
     visibility: visible;
+}
+.none {
+    display: none;
 }

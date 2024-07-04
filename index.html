@@ -21,10 +21,13 @@
             <button class="profile-close-btn">x</button>
             <p class="profile-title">Profile</p>
             <div class="profile-data-cont">
-                <div class="profile-avatar"></div>
-                <div class="profile-text-cont">
+                <div class="profile-left-cont">
+                    <p class="profile-username"></p>
+                    <div class="profile-avatar"></div>
+                </div>
+                <div class="profile-text-cont data">
                     <div class="profile-text-data-cont">
-                        <p class="profile-text">First Name</p>
+                        <p class="profile-text">First name</p>
                         <p class="profile-text profile-name"></p>
                     </div>
                     <div class="profile-text-data-cont">
@@ -40,8 +43,30 @@
                         <p class="profile-text profile-phone"></p>
                     </div>
                 </div>
+                <form class="profile-text-cont edit none">
+                    <div class="profile-text-data-cont">
+                        <label for="1name" class="profile-text">First name</label>
+                        <input type="text" class="profile-text profile-edit-input" placeholder="Enter new first name" name="firstName">
+                    </div>
+                    <div class="profile-text-data-cont">
+                        <label for="2name" class="profile-text">Last name</label>
+                        <input type="text" class="profile-text profile-edit-input" placeholder="Enter new last name" name="lastName">
+                    </div>
+                    <div class="profile-text-data-cont">
+                        <label for="email" class="profile-text">Email</label>
+                        <input type="text" class="profile-text profile-edit-input" placeholder="Enter new email" name="email">
+                    </div>
+                    <div class="profile-text-data-cont">
+                        <label for="phone" class="profile-text">Phone number</label>
+                        <input type="text" class="profile-text profile-edit-input" placeholder="Enter new phone number" name="phone">
+                    </div>
+                </form>
             </div>
-            <button class="profile-logout-btn">Log out</button>
+            <div class="profile-btns">
+                <button class="profile-logout-btn">Log out</button>
+                <button class="profile-edit-btn">Edit</button>
+            </div>
+            <button class="profile-save-btn none">Save</button>
         </div>
     </div>
     <div class="sign_in overlay hidden">

@@ -1,4 +1,4 @@
-import { getProducts, loginFunc, authApi } from "./api.js";
+import { getProducts, loginFunc, authApi, updateUserApi } from "./api.js";
 const cont = document.querySelector(".container")
 const cartBtn = document.querySelector(".cartBtn")
 const cart = document.querySelector(".cart")
@@ -23,6 +23,13 @@ const profilePhone = document.querySelector(".profile-phone")
 const profileModal = document.querySelector(".profileModal")
 const profileOverlay = document.querySelector(".profile")
 const profileCloseBtn = document.querySelector(".profile-close-btn")
+const ProfileLogoutBtn = document.querySelector(".profile-logout-btn")
+const profileUsername = document.querySelector(".profile-username")
+const profileEditForm = document.querySelector(".edit")
+const profileDataCont = document.querySelector(".data")
+const profileEditFormOpenBtn = document.querySelector('.profile-edit-btn')
+const profile1btns = document.querySelector('.profile-btns')
+const profile2btn = document.querySelector('.profile-save-btn')
 
 getProducts()
     .then(data => data.forEach(renderProduct))
@@ -40,7 +47,20 @@ async function auth() {
         profileLastName.textContent = user.lastName
         profileEmail.textContent = user.email
         profilePhone.textContent = user.phone
+        profileUsername.textContent = user.username
     }   
+}
+
+function profileEditOpen () {
+    profileDataCont.classList.add("none")
+    profileEditForm.classList.remove("none")
+    profile1btns.classList.add("none")
+    profile2btn.classList.remove("none")
+    const {firstName, lastName, email, phone} = profileEditForm.elements
+    firstName.value = user.firstName
+    lastName.value = user.lastName
+    email.value = user.email
+    phone.value = user.phone
 }
 
 function profileOpen () {
@@ -50,6 +70,13 @@ function profileOpen () {
 function profileClose () {
     profileOverlay.classList.add("hidden")
     profileModal.classList.remove("profileOpened")
+}
+function logout () {
+    localStorage.clear("token")
+    authFormOpenBtn.classList.remove("none")
+    profileBtn.classList.add("none")
+    user = {}
+    profileClose()
 }
 
 function renderProduct (obj) {
@@ -195,11 +222,15 @@ authForm.addEventListener("submit", async (event) => {
         password:password.value
     }
     const response = await loginFunc(obj)
-    console.log(response)
-    localStorage.setItem("token", response.token)
-    overlayAuthModal.classList.add("hidden")
-    authForm.classList.remove("authModalOpened")
-    auth()
+    if(response.ok){
+        const data =  await response.json()
+        localStorage.setItem("token", data.token)
+        overlayAuthModal.classList.add("hidden")
+        authForm.classList.remove("authModalOpened")
+        auth()
+    } else {
+
+    }
 })
 authFormOpenBtn.addEventListener("click", () => {
     authForm.classList.add("authModalOpened")
@@ -211,5 +242,8 @@ authModalCloseBtn.addEventListener("click", () => {
 })
 profileBtn.addEventListener("click", profileOpen)
 profileCloseBtn.addEventListener("click", profileClose)
+ProfileLogoutBtn.addEventListener("click", logout)
+profileEditFormOpenBtn.addEventListener("click", profileEditOpen)
+profile2btn.addEventListener("send", )
 
 auth()

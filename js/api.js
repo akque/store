@@ -12,14 +12,20 @@ export function loginFunc (obj) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(obj)
       })
-      .then(res => res.json())
 }
 
 export function authApi(){
   return fetch('https://dummyjson.com/auth/me', {
     method: 'GET',
-    headers: {
-      'Authorization': 'Bearer ' +  localStorage.getItem("token"), 
-    }, 
+    headers: { 'Authorization': 'Bearer ' +  localStorage.getItem("token") }, 
   })
+}
+
+export function updateUserApi (obj, id) {
+    return fetch('https://dummyjson.com/users/' + id, {
+        method: 'PUT', /* or PATCH */
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(obj)
+      })
+      .then(res => res.json())
 }
